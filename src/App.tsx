@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
 import List from "./tasks/List";
 import Editor from "./tasks/Editor";
+import {Redis} from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.REACT_APP_UPSTASH_REDIS_REST_URL,
+  token: process.env.REACT_APP_UPSTASH_REDIS_REST_TOKEN,
+});
+
+// const redis = Redis.fromEnv();
 
 const App = () => {
   const [tasks, setTasks] = useState(fetchTasks)
